@@ -35,8 +35,8 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', {
     }).toArray().then((docs) => {
         console.log('Users');
         console.log(JSON.stringify(docs, undefined, 2));
-    }, (err) => {
-        console.log('Unable to fetch users', err);
+    }, (error) => {
+        console.log('Unable to fetch users', error);
     });
 
     client.close();
