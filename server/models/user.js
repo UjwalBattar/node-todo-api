@@ -1,25 +1,34 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const validator = require('validator');
+mongoose.set('useCreateIndex', true);
 
 var User = mongoose.model('User', {
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    age: {
-        type: Number,
-        required: true
-    },
     email: {
         type: String,
         required: true,
-        minLength: 6,
-        trim: true
+        minLength: 1,
+        trim: true,
+        unique: true,
+        validate: {
+            validator: validator.isEmail,
+            message: '{VALUE} is not a valid email.'
+        }
     },
-    location: {
+    password: {
         type: String,
-        trim: true
-    }
+        required: true,
+        minLength: 6
+    },
+    tokens: [{
+        access: {
+            type: String,
+            required: true
+        },
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 module.exports = {
