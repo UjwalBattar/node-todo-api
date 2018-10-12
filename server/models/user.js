@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-mongoose.set('useCreateIndex', true);
 
 var UserSchema = new mongoose.Schema({
     email: {
